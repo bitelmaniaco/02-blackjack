@@ -81,10 +81,24 @@ const turnoCPU = ( puntosM ) => {
         // añade la clase
         imgCarta.classList.add('carta');
         divCartasCPU.append( imgCarta );
+        if(puntosM > 21){ break; }
 
     }while( puntosCPU < puntosJugador && puntosM <= 21);
 
+    setTimeout(() => {
+        if( puntosCPU === puntosM ){
+            alert('nadie gana');
+        }else if( puntosM > 21 ){
+            alert('CPU gana');
+        }else if( puntosCPU > 21 ){
+            alert('Jugador gana');
+        }else if( puntosCPU === 21 ){
+            alert('CPU gana');
+        }else if( puntosCPU > puntosM && ( puntosCPU <= 21 ) ) //|| puntosCPU   )
+            alert('CPU gana');
+    }, 10 );
 
+    
 
 }
 
@@ -95,6 +109,8 @@ const turnoCPU = ( puntosM ) => {
 //callback
 btnPedir.addEventListener('click', () => {
     const carta = pedirCarta();
+    btnDetener.disabled = false;
+
     puntosJugador = puntosJugador + valorCarta( carta );
     puntosHTML[0].innerText = puntosJugador;
     //<img class="carta" src="assets/cartas/10D.png">
@@ -108,6 +124,7 @@ btnPedir.addEventListener('click', () => {
     if( puntosJugador > 21 ) {
         console.log('perdiste');
         btnPedir.disabled = true;
+        turnoCPU( puntosJugador );
     } else if( puntosJugador === 21 ){
         console.log('ganaste huevudo');
         btnPedir.disabled = true;
@@ -115,6 +132,31 @@ btnPedir.addEventListener('click', () => {
 });
 
  
+btnDetener.addEventListener('click', () => {
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
 
+    turnoCPU( puntosJugador );
 
+});
+
+btnNuevo.addEventListener('click', () => {
+
+    //limpiar deck
+    deck = [];
+    deck = crearDeck();
+
+    puntosJugador = 0;
+    puntosCPU     = 0;
+
+    puntosHTML[0].innerText = 0;
+    puntosHTML[1].innerText = 0;
+
+    divCartasJugador.innerHTML = '';
+    divCartasCPU.innerHTML = '';
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
+
+});
 
