@@ -144,20 +144,20 @@ const miModulo = (() => {
     const turnoCPU = ( puntosM ) => {
         // divCartasCPU
         let puntosCPU = 0;
+        console.warn('turnoCPU');
+        console.log({ puntosM });
         do{
             const carta = pedirCarta();
-            // console.warn('turnoCPU');
-            // console.log({ carta });
-
+            
+            console.log({ carta });
             // se le manda la última posicion
             puntosCPU = acumularPuntos( tamPosArray(puntosJugadores), carta );//puntosJugadores.length - 1, carta);
-
+            console.log({ puntosCPU });
             crearCarta( tamPosArray(puntosJugadores), carta );//carta, puntosJugadores.length - 1 );
             if(puntosM > 21){ break; }
-
         }while( (puntosCPU < puntosM) && ( puntosM <= 21 ));
-        console.warn('turnoCPU');
-        console.log({ puntosCPU, puntosM });
+        // console.warn('turnoCPU');
+        // console.log({ puntosCPU, puntosM });
         determinarGanador();
     }
 
@@ -192,7 +192,7 @@ const miModulo = (() => {
         btnPedir.disabled = true;
         btnDetener.disabled = true;
 
-        turnoCPU( puntosJugador );
+        turnoCPU( puntosJugadores[0] );
 
     });
 
