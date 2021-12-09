@@ -24,13 +24,10 @@ const miModulo = (() => {
 
     let deck = [];
     const tipos = ['C', 'D', 'H', 'S'];
-    const especiales = ['A', 'J', 'Q', 'K'];
-
-    
-    let puntosJugador = 0,
-        puntosCPU = 0;
-    
-   let puntosJugadores = [];
+    const especiales = ['A', 'J', 'Q', 'K'];   
+    // let puntosJugador = 0,
+    //     puntosCPU = 0;
+    let puntosJugadores = [];
 
     // Referencias HTML
     const btnPedir   = document.querySelector('#btnPedir'),
@@ -39,12 +36,8 @@ const miModulo = (() => {
 
     const puntosHTML = document.querySelectorAll('small'),
           divCartasJugadores = document.querySelectorAll('.divCartas');
-
-
     //tamaño array
     const tamPosArray = ( array ) => array.length - 1;
-    
-
     // lo obvio
     const inicializarJuego = ( numJugadores = 2 ) => {
         deck = crearDeck();
