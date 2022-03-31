@@ -1,6 +1,6 @@
 # 02-blackjack
  
-Nothing special to install (node_modules).
+Nothing special to install (no node_modules necessary).
 
 
 Just download and enjoy it.
