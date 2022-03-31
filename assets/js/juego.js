@@ -6,15 +6,6 @@
  * 2S = picas
  * 
  */
-/**
-  mediante el modulo - patron modulo
-  se "protege" el codigo
-  
-  (() => {
-      //programa
-  })();
- 
- */
 
 const miModulo = (() => {
     // utiliza una forma estricta de 
@@ -41,7 +32,7 @@ const miModulo = (() => {
     // lo obvio
     const inicializarJuego = ( numJugadores = 2 ) => {
         deck = crearDeck();
-        console.log({ deck });
+        //console.log({ deck });
         // puntosJugadores
         puntosJugadores = [];
         for(let i = 0; i < numJugadores; i++){
@@ -88,7 +79,7 @@ const miModulo = (() => {
     // pedirCarta();
 
     const valorCarta = ( carta ) => {
-        console.log(typeof carta);
+        //console.log(typeof carta);
         const valor = carta.substring(0, carta.length - 1);
         //isNaN: is Not a Number
         return ( isNaN( valor ) ) ?
@@ -98,8 +89,8 @@ const miModulo = (() => {
 
     //turno: 0 = primer jugador, ultimo CPU
     const acumularPuntos = ( turno, carta ) => {
-        console.warn('acumularPuntos');
-        console.log({ carta });
+        //console.warn('acumularPuntos');
+        //console.log({ carta });
         puntosJugadores[turno] = puntosJugadores[turno] + valorCarta( carta );
         puntosHTML[turno].innerText = puntosJugadores[turno];
         return puntosJugadores[turno];
@@ -116,20 +107,20 @@ const miModulo = (() => {
 
         const [ puntosM, puntosCPU ] = puntosJugadores;
 
-        console.warn({ puntosM, puntosCPU });
+        //console.warn({ puntosM, puntosCPU });
 
         setTimeout(() => {
             if( puntosCPU === puntosM ){
-                alert('nadie gana');
+                alert('Nobody wins');
             // }else if( puntosM > puntosCPU && (puntosM <= 21)){
             }else if( puntosM > 21 ){
-                alert('CPU gana');
+                alert('Skynet wins');
             }else if( puntosCPU > 21 ){
-                alert('Jugador gana');
+                alert('Human wins');
             }else if( puntosCPU === 21 ){
-                alert('CPU gana');
+                alert('Skynet wins');
             }else if( puntosCPU > puntosM && ( puntosCPU <= 21 ) ) //|| puntosCPU   )
-                alert('CPU gana');
+                alert('Skynet wins');
         }, 10 );
     }
 
@@ -137,15 +128,15 @@ const miModulo = (() => {
     const turnoCPU = ( puntosM ) => {
         // divCartasCPU
         let puntosCPU = 0;
-        console.warn('turnoCPU');
-        console.log({ puntosM });
+        //console.warn('turnoCPU');
+        //console.log({ puntosM });
         do{
             const carta = pedirCarta();
             
-            console.log({ carta });
+            //console.log({ carta });
             // se le manda la última posicion
             puntosCPU = acumularPuntos( tamPosArray(puntosJugadores), carta );//puntosJugadores.length - 1, carta);
-            console.log({ puntosCPU });
+            //console.log({ puntosCPU });
             crearCarta( tamPosArray(puntosJugadores), carta );//carta, puntosJugadores.length - 1 );
             if(puntosM > 21){ break; }
         }while( (puntosCPU < puntosM) && ( puntosM <= 21 ));
@@ -162,20 +153,20 @@ const miModulo = (() => {
     btnPedir.addEventListener('click', () => {
 
         const carta = pedirCarta();
-        console.warn('btnPedir');
-        console.log({ carta });
+        //console.warn('btnPedir');
+        //console.log({ carta });
 
         const puntosJugador = acumularPuntos( 0, carta );
 
         crearCarta( 0, carta); //, 0);//carta );
         
         if( puntosJugador > 21 ) {
-            console.log('perdiste');
+            //console.log('perdiste');
             btnPedir.disabled = true;
             btnDetener.disabled = false;
             turnoCPU( puntosJugador );
         } else if( puntosJugador === 21 ){
-            console.log('ganaste huevudo');
+            //console.log('ganaste huevudo');
             btnPedir.disabled = true;
         }
     });
